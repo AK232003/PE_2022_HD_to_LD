@@ -23,8 +23,9 @@ def Sum(l):
 # print(l)
 
 # ###################################################
+
 l = [[[0, 0, 0]], [[1, 0, 0], [0, 1, 0], [0, 0, 1]], [[2, 0, 0], [1, 1, 0], [0, 2, 0], [1, 0, 1], [0, 1, 1], [0, 0, 2]], [[2, 1, 0], [1, 2, 0], [2, 0, 1], [1, 1, 1], [0, 2, 1], [1, 0, 2], [0, 1, 2]], [[2, 2, 0], [2, 1, 1], [1, 2, 1], [2, 0, 2], [1, 1, 2], [0, 2, 2]], [[2, 2, 1], [2, 1, 2], [1, 2, 2]], [[2, 2, 2]]]
-out = [[0,0,[0,0,0]],[[1,0,[0,0,1]], [0,1,[1,0,0]], [0.5, 0.5,[0,1,0]]]]
+out = [[[0,0,[0,0,0]]],[[1,0,[0,0,1]], [0,1,[1,0,0]], [0.5, 0.5,[0,1,0]]]]
 
 def fn(c):
     if(c<3): out.append([[c,0,l[c][-1]], [0,c,l[c][0]]])
@@ -39,17 +40,17 @@ def fn(c):
     else:
         x = c-3
         y = 3 
-    # print(l[c])
+    # print(l[c])+
     count = 1
     change = 0
-    if(c%2==0): change+=(c/2)
-    else: change+=((c+1)/2)
+    if(c%2==0): change+=(temp/2)
+    else: change+=((temp+1)/2)
     while(len(l[c]) and (count<=change)):
         p1 = out[c][1][2]
         p2 = out[c-1][1][2]
         p3 = out[c-1][2][2]
         r = (math.dist([out[c][0][0], out[c][0][1]], [out[c][1][0], out[c][1][1]])/(math.sqrt(2)))/(temp-1)
-        print(r,c, temp, math.dist([out[c][0][0], out[c][0][1]], [out[c][1][0], out[c][1][1]])/(math.sqrt(2)), [out[c][0][0], out[c][0][1]], [out[c][1][0], out[c][1][1]])
+        #print(r,c, temp, math.dist([out[c][0][0], out[c][0][1]], [out[c][1][0], out[c][1][1]])/(math.sqrt(2)), [out[c][0][0], out[c][0][1]], [out[c][1][0], out[c][1][1]])
         # print(l[c][0], p1)
         dis = math.dist(l[c][0], p1)
         temp1 = [l[c][0]]
@@ -113,7 +114,7 @@ def fn(c):
         p1 = out[c][0][2]
         p2 = out[c-1][0][2]
         p3 = out[c-1][2][2]
-        r = 2/(temp-1)
+        r = (math.dist([out[c][0][0], out[c][0][1]], [out[c][1][0], out[c][1][1]])/(math.sqrt(2)))/(temp-1)
         # print(p1, p2, p3)
         # print(l[c][0], p1)
         dis = math.dist(l[c][0], p1)
@@ -177,4 +178,9 @@ def fn(c):
 for i in range(2, 3*n):
     fn(i)
 out.append([[(3*n)/2, (3*n)/2, [2,2,2]]])
-for i in out: print(i)
+for i in out:
+    # print(i)
+    for j in i:
+        l1 = j[2]
+        coords = [j[0],j[1]]
+        print(str(l1)+": "+str(coords))
