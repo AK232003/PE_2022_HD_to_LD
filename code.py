@@ -1,5 +1,6 @@
 import numpy as np
 import math
+import plotly.express as px
 
 n = int(input()) #max no of value in T1, T2, T3
 
@@ -178,9 +179,16 @@ def fn(c):
 for i in range(2, 3*n):
     fn(i)
 out.append([[(3*n)/2, (3*n)/2, [2,2,2]]])
+
+# print(out)
+xpos=[]
+ypos=[]
 for i in out:
-    # print(i)
     for j in i:
         l1 = j[2]
         coords = [j[0],j[1]]
+        xpos.append(j[0])
+        ypos.append(j[1])
         print(str(l1)+": "+str(coords))
+fig = px.scatter(x=xpos, y=ypos, title='LD Points', color_discrete_sequence=['red'])
+fig.show()
